@@ -12,7 +12,7 @@ export default class CreateLinkForm extends Component {
       <div className="UrlForm">
         <input type="text" value={ this.state.url } onChange={ this.handleChange.bind(this) }/>
         <input type="button" value="Shorten this link" disabled={ !this.state.url } onClick={ this.handleCreateLink.bind(this) }/>
-      </div>
+      </div>  
     );
   }
 

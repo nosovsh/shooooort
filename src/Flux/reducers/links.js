@@ -1,4 +1,7 @@
-import { CREATE_LINK, DELETE_ALL_LINKS, REFRESH_All_LINKS_INFO } from '../constants/ActionTypes';
+import {
+  CREATE_LINK_IN_PROGRESS, CREATE_LINK_SUCCESS, CREATE_LINK_FAIL,
+  DELETE_ALL_LINKS, REFRESH_All_LINKS_INFO
+} from '../constants/ActionTypes';
 import { combineReducers } from 'redux';
 
 const initialState = [{
@@ -13,17 +16,27 @@ const initialState = [{
 
 export default function links(state = initialState, action) {
   switch (action.type) {
-  case CREATE_LINK:
+  case CREATE_LINK_IN_PROGRESS:
     return [{
       url:action.url,
-      visits: 0,
-      lastVisited: null
+      isCreating: true
     }, ...state];
+
+  case CREATE_LINK_SUCCESS:
+    return state.map(link =>
+      link.url == action.url ? Object.assign({}, link, {isCreating: false}) : link
+    );
+
+  case CREATE_LINK_FAIL:
+    return state.map(link =>
+      link.url == action.url ? Object.assign({}, link, {isCreating: false, isError: true}) : link
+    );
 
   case DELETE_ALL_LINKS:
     return [];
 
   case REFRESH_All_LINKS_INFO:
+    // Not Yes Implemented
     return state;
 
   default:
