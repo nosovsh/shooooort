@@ -1,20 +1,11 @@
 import {
   CREATE_LINK_IN_PROGRESS, CREATE_LINK_SUCCESS, CREATE_LINK_FAIL,
   DELETE_ALL_LINKS, REFRESH_All_LINKS_INFO
-} from '../constants/ActionTypes';
+} from 'Flux/constants/ActionTypes';
 import { combineReducers } from 'redux';
 
-const initialState = [{
-  url: 'http://google.com',
-  visits: 3,
-  lastVisited: null
-},{
-  url: 'http://blahblah.com',
-  visits: 1,
-  lastVisited: null
-}];
 
-export default function links(state = initialState, action) {
+export default function links(state = [], action) {
   switch (action.type) {
   case CREATE_LINK_IN_PROGRESS:
     return [{
@@ -24,7 +15,7 @@ export default function links(state = initialState, action) {
 
   case CREATE_LINK_SUCCESS:
     return state.map(link =>
-      link.url == action.url ? Object.assign({}, link, {isCreating: false}) : link
+      link.url == action.url ? Object.assign({}, link, {isCreating: false, shortcode: action.shortcode}) : link
     );
 
   case CREATE_LINK_FAIL:

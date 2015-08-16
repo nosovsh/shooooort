@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import * as types from '../constants/ActionTypes';
+import * as types from 'Flux/constants/ActionTypes';
+import { SHORTENING_URL } from 'Flux/constants/Urls'
 
 function createLinkInProgress(url) {
   return {
@@ -11,14 +12,15 @@ function createLinkInProgress(url) {
 function createLinkSuccess(url, json) {
   return {
     type: types.CREATE_LINK_SUCCESS,
-    url: url
+    url: url,
+    shortcode: json.shortcode
   }
 }
 
 function requestCreateLink(url) {
   return dispatch => {
     dispatch(createLinkInProgress(url));
-    return fetch(`http://gymia-shorty.herokuapp.com/shorten`, {
+    return fetch(SHORTENING_URL, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
