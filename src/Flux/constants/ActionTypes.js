@@ -1,0 +1,3 @@
+export const CREATE_LINK = 'CREATE_LINK';
+export const DELETE_ALL_LINKS = 'DELETE_ALL_LINKS';
+export const REFRESH_All_LINKS_INFO = 'REFRESH_All_LINKS_INFO';
