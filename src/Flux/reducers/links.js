@@ -8,10 +8,11 @@ import { combineReducers } from 'redux';
 export default function links(state = [], action) {
   switch (action.type) {
   case CREATE_LINK_IN_PROGRESS:
-    return [{
-      url:action.url,
-      isCreating: true
-    }, ...state];
+      // remove old link with the same url and add new
+      return [{
+        url:action.url,
+        isCreating: true
+      }, ...state.filter(link => link.url != action.url)];
 
   case CREATE_LINK_SUCCESS:
     return state.map(link =>
