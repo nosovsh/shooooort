@@ -19,7 +19,7 @@ class App extends Component {
         </div>
         <div className="Shooooort__Content">
           <CreateLinkForm createLink={ actions.createLink } />
-          <LinkList links={links} deleteAllLinks={ actions.deleteAllLinks } />
+          { links.length ? <LinkList links={links} deleteAllLinks={ actions.deleteAllLinks } /> : null }
         </div>
       </div>
     );
