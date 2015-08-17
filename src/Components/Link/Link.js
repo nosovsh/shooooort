@@ -1,37 +1,53 @@
 import React, { Component, PropTypes } from 'react';
-import { SHORT_DISPLAY_HOST } from 'Flux/constants/Urls';
+import { SHORT_HOST_DISPLAY, SHORT_HOST_REAL } from 'Flux/constants/Urls';
+import ReactZeroClipboard from 'react-zeroclipboard'
 
 import './style.scss';
+
+const JUST_COPITE_TIMEOUT = 2000;
 
 export default class Link extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      isHovered: false
+      isHovered: false,
+      isJustCopied: false
     };
   }
   render () {
     const { link, isNew } = this.props;
 
     return (
-      <div className="Link">
-        { isNew ? <div className="Link__Highliter" /> : null }
-        <div className="Link__Urls">
-          { link.isCreating ? <div>Loading...</div> : <div>
-            { SHORT_DISPLAY_HOST }<span className="Link__Shortcode">{ link.shortcode }</span>
-            <span className="Link__Copy">Click to copy this link</span>
-            </div> }
-
-          <div className="Link__Source">{ fix_length(link.url, 45) }</div>
+      <ReactZeroClipboard text={ SHORT_HOST_REAL + link.shortcode }>
+        <div className="Link" onClick={ this.clickHandler.bind(this) }>
+          { isNew ? <div className="Link__Highliter" /> : null }
+          <div className="Link__Urls">
+            { link.isCreating ? <div>Loading...</div> : <div>
+              { SHORT_HOST_DISPLAY }<span className="Link__Shortcode">{ link.shortcode }</span>
+              <span className="Link__Copy">
+                { this.state.isJustCopied ? "Copied!" : "Click to copy this link" }
+              </span>
+              </div> }
+            <div className="Link__Source">{ fix_length(link.url, 45) }</div>
+          </div>
+          <div className="Link__Visits">
+            1140
+          </div>
+          <div className="Link__LastVisited">
+            2 days ago
+          </div>
         </div>
-        <div className="Link__Visits">
-          1140
-        </div>
-        <div className="Link__LastVisited">
-          2 days ago
-        </div>
-      </div>
+      </ReactZeroClipboard>
     );
+  }
+
+  clickHandler (e) {
+    this.setState({
+      isJustCopied: true
+    })
+    setTimeout(() => this.setState({
+      isJustCopied: false
+    }), JUST_COPITE_TIMEOUT)
   }
 }
 

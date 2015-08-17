@@ -1,3 +1,3 @@
-export const SHORT_HOST = "http://gymia-shorty.herokuapp.com/"
-export const SHORTENING_URL = SHORT_HOST + "shorten"
-export const SHORT_DISPLAY_HOST = "shooooort.com/"
+export const SHORT_HOST_REAL = "http://gymia-shorty.herokuapp.com/"
+export const SHORTENING_URL = SHORT_HOST_REAL + "shorten"
+export const SHORT_HOST_DISPLAY = "shooooort.com/"
