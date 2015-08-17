@@ -25,8 +25,13 @@
   padding: 12px 18px;
   font-size: $normal-text-size;
   border: 0px;
-  @include border-radius(3px);
   float: right;
+  @include border-radius(3px);
+  @include transition(all .2s ease-in-out);
+}
+
+.CreateLinkForm__Button:enabled:hover {
+  @include transform(scale(1.08));
 }
 
 .CreateLinkForm__Button:disabled {
