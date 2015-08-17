@@ -11,9 +11,10 @@ export default class Link extends Component {
     };
   }
   render () {
-    const { link } = this.props;
+    const { link, isNew } = this.props;
     return (
       <div className="Link" onHover={ this.handleHover.bind(this) }>
+        { isNew ? <div className="Link__Highliter" /> : null }
         <div className="Link__Urls">
           { link.isCreating ? <div>Loading...</div> : <div>
             { SHORT_DISPLAY_HOST }<span className="Link__Shortcode">{ link.shortcode }</span>
@@ -38,5 +39,6 @@ export default class Link extends Component {
 }
 
 Link.propTypes = {
-  link: PropTypes.object.isRequired
+  link: PropTypes.object.isRequired,
+  isNew: PropTypes.boolean,
 }

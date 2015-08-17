@@ -4,7 +4,18 @@
 .Link {
   @extend .Row;
   cursor: pointer;
-  margin-bottom: 28px;
+  padding-bottom: 14px;
+  padding-top: 14px;
+  position: relative;
+}
+
+.Link__Highliter {
+    position: absolute;
+    height: 100%;
+    border-left: 4px solid $accent-color;
+    width: 1px;
+    left: -11px;
+    top: -1px;
 }
 
 .Link__Urls {

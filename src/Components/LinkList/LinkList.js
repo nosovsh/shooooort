@@ -19,7 +19,7 @@ export default class LinkList extends Component {
               <div className="LinkList__Body__Header__LastVisited">Last Visited</div>
           </div>
           <div className="LinkList__Body__Content">
-            { links.map(link =><Link key={ link.url } link={ link } />)}
+            { links.map((link, index) =><Link key={ link.url } link={ link } isNew={ !index } />)}
           </div>
         </div>
       </div>

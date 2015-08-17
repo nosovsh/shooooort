@@ -8,7 +8,7 @@
 
 .LinkList__Header {
   @extend .Column-8;
-  margin-bottom: 19px;
+  margin-bottom: 20px;
 }
 
 .LinkList__Body {
@@ -21,7 +21,7 @@
   font-size: $table-headings-size;
   color: $secondary-text-color;
   text-transform: uppercase;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 
 .LinkList__Body__Header__Urls {
