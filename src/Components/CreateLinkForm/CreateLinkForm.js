@@ -18,6 +18,7 @@ export default class CreateLinkForm extends Component {
             type="text"
             value={ this.state.url }
             onChange={ this.handleChange.bind(this) }
+            onKeyPress={ this.handleKeyPress.bind(this)}
             className="CreateLinkForm__TextInput"
             placeholder="Paste the link you want to shorten here"/>
 
@@ -34,6 +35,11 @@ export default class CreateLinkForm extends Component {
 
   handleChange (e) {
     this.setState({url: e.target.value});
+  }
+
+  handleKeyPress (e) {
+    if (e.charCode == 13)
+      this.handleCreateLink(e)
   }
 
   handleCreateLink (e) {
