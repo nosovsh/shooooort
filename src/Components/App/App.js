@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as LinkActions from 'Flux/actions/links';
+import TimeoutTransitionGroup from 'react-components/timeout-transition-group'
 
 import CreateLinkForm from "Components/CreateLinkForm/CreateLinkForm"
 import LinkList from "Components/LinkList/LinkList"
@@ -25,7 +26,13 @@ class App extends Component {
           </div>
         </div>
         <CreateLinkForm createLink={ actions.createLink } />
-        { links.length ? <LinkList links={links} deleteAllLinks={ actions.deleteAllLinks } /> : null }
+
+        <TimeoutTransitionGroup
+            enterTimeout={500}
+            leaveTimeout={500}
+            transitionName="LinkList">
+            { links.length ? <LinkList links={links} deleteAllLinks={ actions.deleteAllLinks } /> : null }
+        </TimeoutTransitionGroup>
       </div>
     );
   }

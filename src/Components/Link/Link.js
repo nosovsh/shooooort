@@ -58,6 +58,5 @@ Link.propTypes = {
 
 
 let fix_length = function(str, length) {
-  console.log(str)
   return str.length > length ? str.slice(0, length - 1) + "..." : str
 }

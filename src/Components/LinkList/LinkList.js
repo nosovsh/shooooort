@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Link from 'Components/Link/Link'
+import TimeoutTransitionGroup from 'react-components/timeout-transition-group'
 
 import './style.scss'
 
@@ -19,7 +20,12 @@ export default class LinkList extends Component {
               <div className="LinkList__Body__Header__LastVisited">Last Visited</div>
           </div>
           <div className="LinkList__Body__Content">
-            { links.map((link, index) =><Link key={ link.url } link={ link } isNew={ !index } />)}
+          <TimeoutTransitionGroup
+              enterTimeout={500}
+              leaveTimeout={500}
+              transitionName="Link">
+            { links.map((link, index) => (<Link link={ link } isNew={ !index } key={ link.url }/> ))}
+          </TimeoutTransitionGroup>
           </div>
         </div>
       </div>

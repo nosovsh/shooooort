@@ -4,8 +4,8 @@
 @import 'CommonStyles/grid.scss';
 
 .CreateLinkForm {
-    @extend .Row;
-    margin-bottom: 59px;
+  @extend .Row;
+  margin-bottom: 59px;
 }
 
 .CreateLinkForm__TextInput {

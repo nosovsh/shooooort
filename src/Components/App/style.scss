@@ -1,6 +1,7 @@
 @import 'CommonStyles/colors.scss';
 @import 'CommonStyles/fonts.scss';
 @import 'CommonStyles/grid.scss';
+@import 'CommonStyles/animation.scss';
 
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
@@ -44,4 +45,23 @@ body {
   position: absolute;
   bottom: 0;
   right: 10px;
+}
+
+.LinkList-enter {
+  @extend .animated;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.LinkList-enter.LinkList-enter-active {
+
+}
+
+.LinkList-leave {
+  @extend .animated;
+  -webkit-animation-name: fadeOutDown;
+  animation-name: fadeOutDown;
+}
+
+.LinkList-leave.LinkList-leave-active {
 }

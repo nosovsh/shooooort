@@ -1,6 +1,7 @@
 @import 'CommonStyles/colors.scss';
 @import 'CommonStyles/fonts.scss';
 @import 'CommonStyles/grid.scss';
+@import 'CommonStyles/animation.scss';
 
 .LinkList {
   @extend .Row;
@@ -54,4 +55,24 @@
 
 .LinkList__Header__DeleteAll:hover {
   text-decoration: underline;
+}
+
+
+.Link-enter {
+  @extend .animated;
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+}
+
+.Link-enter.Link-enter-active {
+
+}
+
+.Link-leave {
+  @extend .animated;
+  -webkit-animation-name: fadeOutDown;
+  animation-name: fadeOutDown;
+}
+
+.Link-leave.Link-leave-active {
 }
