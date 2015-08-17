@@ -1,0 +1,44 @@
+.Container {
+  padding-right: 10px;
+  padding-left: 10px;
+  margin: 110px auto 0;
+  max-width:640px;
+}
+
+.Row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.Row:after, .Row:before {
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+.Column {
+  float:left;
+  display: block;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.Column-2 {
+  @extend .Column;
+  width: 25%;
+}
+
+.Column-4 {
+  @extend .Column;
+  width: 50%;
+}
+
+.Column-6 {
+  @extend .Column;
+  width: 75%;
+}
+
+.Column-8 {
+  @extend .Column;
+  width: 100%;
+}

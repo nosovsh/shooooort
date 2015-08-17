@@ -1,0 +1,35 @@
+@import 'CommonStyles/colors.scss';
+@import 'CommonStyles/fonts.scss';
+@import 'CommonStyles/mixins.scss';
+@import 'CommonStyles/grid.scss';
+
+.CreateLinkForm {
+    @extend .Row;
+    margin-bottom: 59px;
+}
+
+.CreateLinkForm__TextInput {
+  background-color: $light-background-color;
+  padding: 12px 18px;
+  font-size: $normal-text-size;
+  border: 0px;
+  outline: none;
+  width: 460px;
+  @include border-radius(3px);
+  float: left;
+}
+
+.CreateLinkForm__Button {
+  background-color: $accent-color;
+  color: $button-color;
+  padding: 12px 18px;
+  font-size: $normal-text-size;
+  border: 0px;
+  @include border-radius(3px);
+  float: right;
+}
+
+.CreateLinkForm__Button:disabled {
+  background-color: $disabled-button-background-color;
+  color: $disabled-button-text-color;
+}

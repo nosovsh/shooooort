@@ -1,0 +1,50 @@
+@import 'CommonStyles/colors.scss';
+@import 'CommonStyles/grid.scss';
+
+.Link {
+  @extend .Row;
+  cursor: pointer;
+  margin-bottom: 28px;
+}
+
+.Link__Urls {
+  @extend .Column;
+  width: 443px;
+}
+
+.Link__Visits {
+  @extend .Column;
+  width: 80px;
+  text-align: center;
+  display: inline-block;
+  line-height: 50px;
+}
+
+.Link__LastVisited {
+  @extend .Column;
+  width: 114px;
+  text-align: center;
+  display: inline-block;
+  line-height: 50px;
+}
+
+.Link__Shortcode {
+  color: $accent-color;
+}
+
+.Link__Source {
+  color: $unimportant-text-color;
+  display: inline-block;
+  line-height: 36px;
+}
+
+.Link__Copy {
+  display: none;
+  color: $accent-color;
+  text-decoration: none;
+  padding-left: 24px;
+}
+
+.Link:hover .Link__Copy {
+  display: inline;
+}

@@ -1,0 +1,47 @@
+@import 'CommonStyles/colors.scss';
+@import 'CommonStyles/fonts.scss';
+@import 'CommonStyles/grid.scss';
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  color: $primary-text-color;
+  font-family: Roboto-Light;
+  font-size: $normal-text-size;
+}
+
+.Header {
+  @extend .Row;
+  margin-bottom: 53px;
+  position: relative;
+  padding-top: 35px;
+}
+
+.Header__Logo {
+  font-family: Montserrat-Regular;
+  font-size: $logo-font-size;
+  letter-spacing: -0.7px;
+  color: $accent-color;
+  text-decoration: underline;
+  margin: 0;
+
+  line-height: 53px;
+  position: absolute;
+  bottom: 1px;
+}
+
+.Header__Tagline {
+  font-size: $normal-text-size;
+  color: $secondary-text-color;
+  margin: 0;
+  display: inline;
+  line-height: 32px;
+  vertical-align: bottom;
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}

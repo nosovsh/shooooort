@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import './style.scss'
+
 export default class CreateLinkForm extends Component {
   constructor(props) {
     super(props);
@@ -7,12 +9,26 @@ export default class CreateLinkForm extends Component {
       url: ""
     };
   }
+
   render ()  {
     return (
-      <div className="UrlForm">
-        <input type="text" value={ this.state.url } onChange={ this.handleChange.bind(this) }/>
-        <input type="button" value="Shorten this link" disabled={ !this.state.url } onClick={ this.handleCreateLink.bind(this) }/>
-      </div>  
+      <div className="CreateLinkForm">
+        <div className="Column-8">
+          <input
+            type="text"
+            value={ this.state.url }
+            onChange={ this.handleChange.bind(this) }
+            className="CreateLinkForm__TextInput"
+            placeholder="Paste the link you want to shorten here"/>
+
+          <input
+            type="button"
+            value="Shorten this link"
+            disabled={ !this.state.url }
+            onClick={ this.handleCreateLink.bind(this) }
+            className="CreateLinkForm__Button"/>
+        </div>
+      </div>
     );
   }
 

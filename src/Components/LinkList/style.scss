@@ -1,0 +1,57 @@
+@import 'CommonStyles/colors.scss';
+@import 'CommonStyles/fonts.scss';
+@import 'CommonStyles/grid.scss';
+
+.LinkList {
+  @extend .Row;
+}
+
+.LinkList__Header {
+  @extend .Column-8;
+  margin-bottom: 19px;
+}
+
+.LinkList__Body {
+  @extend .Column-8;
+}
+
+.LinkList__Body__Header {
+  @extend .Row;
+  font-family: Roboto-Regular;
+  font-size: $table-headings-size;
+  color: $secondary-text-color;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+}
+
+.LinkList__Body__Header__Urls {
+  @extend .Column;
+  width: 443px;
+}
+
+.LinkList__Body__Header__Visits {
+  @extend .Column;
+  width: 80px;
+  text-align: center;
+}
+
+.LinkList__Body__Header__LastVisited {
+  @extend .Column;
+  width: 114px;
+  text-align: center;
+}
+
+.LinkList__Header__Title {
+  font-size: $section-headings-size;
+  display: inline-block;
+}
+
+.LinkList__Header__DeleteAll {
+  color: $accent-color;
+  text-decoration: none;
+  padding-left: 22px;
+}
+
+.LinkList__Header__DeleteAll:hover {
+  text-decoration: underline;
+}

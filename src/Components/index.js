@@ -1,9 +1,11 @@
 import 'babel-core/polyfill'
 import React, { Component } from 'react';
-import App from 'Components/App/App';
-import configureStore from 'Flux/store/configureStore'
-
 import { Provider } from 'react-redux';
+
+import App from 'Components/App/App';
+import configureStore from 'Flux/store/configureStore';
+
+
 
 const store = configureStore()
 
