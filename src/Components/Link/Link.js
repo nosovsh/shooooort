@@ -12,8 +12,9 @@ export default class Link extends Component {
   }
   render () {
     const { link, isNew } = this.props;
+
     return (
-      <div className="Link" onHover={ this.handleHover.bind(this) }>
+      <div className="Link">
         { isNew ? <div className="Link__Highliter" /> : null }
         <div className="Link__Urls">
           { link.isCreating ? <div>Loading...</div> : <div>
@@ -21,7 +22,7 @@ export default class Link extends Component {
             <span className="Link__Copy">Click to copy this link</span>
             </div> }
 
-          <div className="Link__Source">{ link.url }</div>
+          <div className="Link__Source">{ fix_length(link.url, 45) }</div>
         </div>
         <div className="Link__Visits">
           1140
@@ -32,13 +33,15 @@ export default class Link extends Component {
       </div>
     );
   }
-
-  handleHover (e) {
-
-  }
 }
 
 Link.propTypes = {
   link: PropTypes.object.isRequired,
-  isNew: PropTypes.boolean,
+  isNew: PropTypes.bool,
+}
+
+
+let fix_length = function(str, length) {
+  console.log(str)
+  return str.length > length ? str.slice(0, length - 1) + "..." : str
 }
