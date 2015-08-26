@@ -17,7 +17,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      __DEVTOOLS__: true
+      __DEVTOOLS__: false
     }),
   ],
   resolve: {
@@ -32,8 +32,9 @@ module.exports = {
         include: path.join(__dirname, 'src')
       },
       { test: /\.css$/, loader: "style!css" },
-      { test: /\.scss$/, loader: "style!css!sass" + "?includePaths[]=" +
-            encodeURIComponent(path.resolve(__dirname, "./src"))},
+      { test: /\.scss$/, loader: "style!css!sass" +
+        "?includePaths[]=" + encodeURIComponent(path.resolve(__dirname, "./src")) +
+        "&includePaths[]=" + path.resolve(__dirname, "./node_modules/breakpoint-sass/stylesheets")},
       { test: /\.(ttf|eot|svg|woff|ttf)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
     ]
   }

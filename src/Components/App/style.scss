@@ -2,6 +2,8 @@
 @import 'CommonStyles/fonts.scss';
 @import 'CommonStyles/grid.scss';
 @import 'CommonStyles/animation.scss';
+@import 'CommonStyles/breakpoints.scss';
+
 
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
@@ -20,6 +22,10 @@ body {
   margin-bottom: 53px;
   position: relative;
   padding-top: 35px;
+  @include breakpoint($mobile) {
+    padding-top: 0;
+    margin-bottom: 20px;
+  }
 }
 
 .Header__Logo {
@@ -27,12 +33,13 @@ body {
   font-size: $logo-font-size;
   letter-spacing: -0.7px;
   color: $accent-color;
-  text-decoration: underline;
   margin: 0;
-
   line-height: 53px;
   position: absolute;
   bottom: 1px;
+  @include breakpoint($mobile) {
+    position: static;
+  }
 }
 
 .Header__Tagline {
@@ -45,6 +52,9 @@ body {
   position: absolute;
   bottom: 0;
   right: 10px;
+  @include breakpoint($mobile) {
+    position: static;
+  }
 }
 
 .LinkList-enter {

@@ -2,10 +2,14 @@
 @import 'CommonStyles/fonts.scss';
 @import 'CommonStyles/mixins.scss';
 @import 'CommonStyles/grid.scss';
+@import 'CommonStyles/breakpoints.scss';
 
 .CreateLinkForm {
   @extend .Row;
   margin-bottom: 59px;
+  @include breakpoint($mobile) {
+    margin-bottom: 0;
+  }
 }
 
 .CreateLinkForm__TextInput {
@@ -15,6 +19,7 @@
   border: 0px;
   outline: none;
   width: 460px;
+  max-width: 100%;
   @include border-radius(3px);
   float: left;
 }
@@ -28,6 +33,11 @@
   float: right;
   @include border-radius(3px);
   @include transition(all .2s ease-in-out);
+  @include breakpoint($mobile) {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
 }
 
 .CreateLinkForm__Button:enabled:hover {

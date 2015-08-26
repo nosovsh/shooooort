@@ -1,6 +1,7 @@
 @import 'CommonStyles/colors.scss';
 @import 'CommonStyles/grid.scss';
 @import 'CommonStyles/mixins.scss';
+@import 'CommonStyles/breakpoints.scss';
 
 .Link {
   @extend .Row;
@@ -25,11 +26,17 @@
     width: 1px;
     left: -11px;
     top: -1px;
+    @include breakpoint($mobile) {
+      left: 0;
+    }
 }
 
 .Link__Urls {
   @extend .Column;
   width: 397px;
+  @include breakpoint($mobile) {
+    width: 100%;
+  }
 }
 
 .Link__Visits {
@@ -38,6 +45,11 @@
   text-align: center;
   display: inline-block;
   line-height: 50px;
+  @include breakpoint($mobile) {
+    display: inline;
+    line-height: 1em;
+    width: auto
+  }
 }
 
 .Link__LastVisited {
@@ -46,6 +58,17 @@
   text-align: center;
   display: inline-block;
   line-height: 50px;
+  @include breakpoint($mobile) {
+    display: inline;
+    line-height: 1em;
+    width: auto
+  }
+}
+.Link__LastVisited_Helper, .Link__Visits__Helper {
+  display: none;
+  @include breakpoint($mobile) {
+    display: inline;
+  }
 }
 
 .Link__Shortcode {
