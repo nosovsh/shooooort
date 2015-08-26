@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as LinkActions from 'Flux/actions/links';
+import * as LinkInfoActions from 'Flux/actions/linkInfo';
 import TimeoutTransitionGroup from 'react-components/timeout-transition-group'
 
 import CreateLinkForm from "Components/CreateLinkForm/CreateLinkForm"
@@ -35,6 +36,11 @@ class App extends Component {
         </TimeoutTransitionGroup>
       </div>
     );
+  }
+  componentDidMount() {
+    this.props.links.map(link => {
+      this.props.dispatch(LinkInfoActions.linkInfo(link.shortcode))
+    })
   }
 }
 

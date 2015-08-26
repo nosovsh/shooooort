@@ -21,7 +21,7 @@ export default function(initialState) {
     thunkMiddleware,
     logger
   ];
-  if ( __DEVTOOLS__) {
+  if ( __DEVTOOLS__ ) {
     const { devTools, persistState } = require('redux-devtools');
     finalCreateStore = compose(
       applyMiddleware(...middlewares),
@@ -34,7 +34,8 @@ export default function(initialState) {
     finalCreateStore = compose(
       applyMiddleware(...middlewares),
       localStoragePersistState(),
-      createStore);
+      createStore
+    );
   }
   return finalCreateStore(rootReducer, initialState);
 }

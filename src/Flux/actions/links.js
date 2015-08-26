@@ -1,10 +1,10 @@
 import fetch from 'isomorphic-fetch';
 import * as types from 'Flux/constants/ActionTypes';
-import { SHORTENING_URL } from 'Flux/constants/Urls'
+import { SHORTENING_URL, LINK_INFO_URL } from 'Flux/constants/Urls'
 
-function createLinkInProgress(url) {
+function createLinkRequest(url) {
   return {
-    type: types.CREATE_LINK_IN_PROGRESS,
+    type: types.CREATE_LINK_REQUEST,
     url: url
   }
 }
@@ -17,9 +17,23 @@ function createLinkSuccess(url, json) {
   }
 }
 
-function requestCreateLink(url) {
+export function createLink(url) {
+  return (dispatch, getState) => {
+    return dispatch(actuallyCreateLink(url));
+  };
+}
+
+export function deleteAllLinks() {
+  return { type: types.DELETE_ALL_LINKS };
+}
+
+/**
+ * Makes real request to server and fetch shortcode for *url*
+ * Dispatch Link actions
+ **/
+function actuallyCreateLink(url) {
   return dispatch => {
-    dispatch(createLinkInProgress(url));
+    dispatch(createLinkRequest(url));
     return fetch(SHORTENING_URL, {
       method: 'post',
       headers: {
@@ -32,18 +46,4 @@ function requestCreateLink(url) {
     }).then(req => req.json())
       .then(json => dispatch(createLinkSuccess(url, json)));
   }
-}
-
-export function createLink(url) {
-  return (dispatch, getState) => {
-    return dispatch(requestCreateLink(url));
-  };
-}
-
-export function deleteAllLinks() {
-  return { type: types.DELETE_ALL_LINKS };
-}
-
-export function refreshAllLinksInfo() {
-  return { type: types.REFRESH_All_LINKS_INFO };
 }

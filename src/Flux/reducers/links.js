@@ -1,37 +1,42 @@
-import {
-  CREATE_LINK_IN_PROGRESS, CREATE_LINK_SUCCESS, CREATE_LINK_FAIL,
-  DELETE_ALL_LINKS, REFRESH_All_LINKS_INFO
-} from 'Flux/constants/ActionTypes';
+import * as actionTypes from 'Flux/constants/ActionTypes';
 import { combineReducers } from 'redux';
 
 
 export default function links(state = [], action) {
   switch (action.type) {
-  case CREATE_LINK_IN_PROGRESS:
+  case actionTypes.CREATE_LINK_REQUEST:
       // remove old link with the same url and add new
       return [{
-        url:action.url,
+        url: action.url,
         isCreating: true
       }, ...state.filter(link => link.url != action.url)];
 
-  case CREATE_LINK_SUCCESS:
+  case actionTypes.CREATE_LINK_SUCCESS:
     return state.map(link =>
       link.url == action.url ? Object.assign({}, link, {isCreating: false, shortcode: action.shortcode}) : link
     );
 
-  case CREATE_LINK_FAIL:
+  case actionTypes.CREATE_LINK_FAIL:
     return state.map(link =>
       link.url == action.url ? Object.assign({}, link, {isCreating: false, isError: true}) : link
     );
 
-  case DELETE_ALL_LINKS:
-    return [];
+  case actionTypes.LINK_INFO_REQUEST:
+    return state
 
-  case REFRESH_All_LINKS_INFO:
-    // Not Yes Implemented
-    return state;
+  case actionTypes.LINK_INFO_SUCCESS:
+    return state.map(link =>
+      link.shortcode == action.shortcode ? Object.assign({}, link, action) : link
+    )
+
+  case actionTypes.LINK_INFO_FAIL:
+    return state
+
+  case actionTypes.DELETE_ALL_LINKS:
+    return [];
 
   default:
     return state;
+
   }
 }

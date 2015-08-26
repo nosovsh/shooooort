@@ -31,10 +31,10 @@ export default class Link extends Component {
             <div className="Link__Source">{ fix_length(link.url, 45) }</div>
           </div>
           <div className="Link__Visits">
-            1140
+            { link.redirectCount || 0 }
           </div>
           <div className="Link__LastVisited">
-            2 days ago
+            { link.lastSeenDate || "Just now" }
           </div>
         </div>
       </ReactZeroClipboard>
@@ -57,6 +57,6 @@ Link.propTypes = {
 }
 
 
-let fix_length = function(str, length) {
+let fix_length = function(str="", length) {
   return str.length > length ? str.slice(0, length - 1) + "..." : str
 }
