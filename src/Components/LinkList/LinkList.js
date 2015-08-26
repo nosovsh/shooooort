@@ -17,7 +17,7 @@ export default class LinkList extends Component {
           <div className="LinkList__Body__Header">
               <div className="LinkList__Body__Header__Urls">Link</div>
               <div className="LinkList__Body__Header__Visits">Visits</div>
-              <div className="LinkList__Body__Header__LastVisited">Last Visited</div>
+              <div className="LinkList__Body__Header__LastVisited">Created</div>
           </div>
           <div className="LinkList__Body__Content">
           <TimeoutTransitionGroup

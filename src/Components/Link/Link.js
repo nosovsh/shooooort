@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import moment from 'moment';
 import { SHORT_HOST_DISPLAY, SHORT_HOST_REAL } from 'Flux/constants/Urls';
 import ReactZeroClipboard from 'react-zeroclipboard'
 
@@ -34,7 +35,7 @@ export default class Link extends Component {
             { link.redirectCount || 0 }
           </div>
           <div className="Link__LastVisited">
-            { link.lastSeenDate || "Just now" }
+            { moment(link.startDate || Date.now()).fromNow() }
           </div>
         </div>
       </ReactZeroClipboard>

@@ -1,9 +1,12 @@
 import 'babel-core/polyfill'
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import moment from 'moment';
 
 import App from 'Components/App/App';
 import configureStore from 'Flux/store/configureStore';
+
+moment.locale("en");
 
 const store = configureStore()
 
