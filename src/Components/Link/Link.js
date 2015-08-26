@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
 import { SHORT_HOST_DISPLAY, SHORT_HOST_REAL } from 'Flux/constants/Urls';
 import ReactZeroClipboard from 'react-zeroclipboard'
+import classNames from 'classnames'
 
 import './style.scss';
 
@@ -17,28 +18,50 @@ export default class Link extends Component {
   }
   render () {
     const { link, isNew } = this.props;
+    const classes = classNames(
+      "Link",
+      {"Link-isError": link.isError },
+      {"Link-isCreating": link.isCreating }
+    )
 
-    return (
-      <ReactZeroClipboard text={ SHORT_HOST_REAL + link.shortcode }>
-        <div className="Link" onClick={ this.clickHandler.bind(this) }>
-          { isNew ? <div className="Link__Highliter" /> : null }
-          <div className="Link__Urls">
-            { link.isCreating ? <div>Loading...</div> : <div>
-              { SHORT_HOST_DISPLAY }<span className="Link__Shortcode">{ link.shortcode }</span>
-              <span className="Link__Copy">
-                { this.state.isJustCopied ? "Copied!" : "Click to copy this link" }
-              </span>
-              </div> }
-            <div className="Link__Source">{ fix_length(link.url, 45) }</div>
-          </div>
-          <div className="Link__Visits">
-            { link.redirectCount || 0 }
-          </div>
-          <div className="Link__LastVisited">
-            { moment(link.startDate || Date.now()).fromNow() }
-          </div>
+    // Component with shortcode and copy text
+    const shortcodeComponent = (
+      <span>
+        { link.isCreating ? <div>Loading...</div> :
+          <div>
+            { SHORT_HOST_DISPLAY }<span className="Link__Shortcode">{ link.shortcode }</span>
+            <span className="Link__Copy">
+              { this.state.isJustCopied ? "Copied!" : "Click to copy this link" }
+            </span>
+          </div> }
+      </span>
+    )
+
+    // whole row
+    const comnonent = (
+      <div className={ classes } onClick={ this.clickHandler.bind(this) }>
+        { isNew ? <div className="Link__Highliter" /> : null }
+        <div className="Link__Urls">
+          { link.isError ? <div className="Link__Error">Something went wrong. Please try again.</div> : shortcodeComponent }
+          <div className="Link__Source">{ fix_length(link.url, 45) }</div>
         </div>
-      </ReactZeroClipboard>
+        <div className="Link__Visits">
+          { link.isError || link.isCreating ? "—" : link.redirectCount || 0 }
+        </div>
+        <div className="Link__LastVisited">
+          { link.isError || link.isCreating ? "-" : moment(link.startDate || Date.now()).fromNow() }
+        </div>
+      </div>
+    );
+
+    // wrap into copy compnonent if needed
+    return (
+      <span>
+        { link.isError || link.isCreating ? comnonent :
+          <ReactZeroClipboard text={ SHORT_HOST_REAL + link.shortcode }>
+            { comnonent }
+          </ReactZeroClipboard> }
+      </span>
     );
   }
 

@@ -38,7 +38,7 @@ class App extends Component {
     );
   }
   componentDidMount() {
-    this.props.links.map(link => {
+    this.props.links.filter(link => link.shortcode).map(link => {
       this.props.dispatch(LinkInfoActions.linkInfo(link.shortcode))
     })
   }

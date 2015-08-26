@@ -10,6 +10,14 @@
   position: relative;
 }
 
+.Link-isError {
+  cursor: default;
+}
+
+.Link-isCreating {
+  cursor: default;
+}
+
 .Link__Highliter {
     position: absolute;
     height: 100%;
@@ -41,6 +49,10 @@
 }
 
 .Link__Shortcode {
+  color: $accent-color;
+}
+
+.Link__Error {
   color: $accent-color;
 }
 

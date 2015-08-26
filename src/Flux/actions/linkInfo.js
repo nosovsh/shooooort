@@ -20,9 +20,10 @@ function linkInfoSuccess(shortcode, json) {
   }
 }
 
-function linkInfoFail(shortcode, json) {
+function linkInfoFail(shortcode) {
   return {
-    type: types.LINK_INFO_FAIL
+    type: types.LINK_INFO_FAIL,
+    shortcode: shortcode
   }
 }
 
@@ -46,6 +47,10 @@ function actuallyLinkInfo(shortcode) {
         'Content-Type': 'application/json'
       }
     }).then(req => req.json())
-      .then(json => dispatch(linkInfoSuccess(shortcode, json)));
+      .then(json => dispatch(linkInfoSuccess(shortcode, json)))
+      .catch(ex => {
+        dispatch(linkInfoFail(url))
+        throw ex;
+      });
   }
 }

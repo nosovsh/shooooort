@@ -17,6 +17,13 @@ function createLinkSuccess(url, json) {
   }
 }
 
+function createLinkFail(url) {
+  return {
+    type: types.CREATE_LINK_FAIL,
+    url: url
+  }
+}
+
 export function createLink(url) {
   return (dispatch, getState) => {
     return dispatch(actuallyCreateLink(url));
@@ -43,7 +50,11 @@ function actuallyCreateLink(url) {
       body: JSON.stringify({
         url: url,
       })
-    }).then(req => req.json())
-      .then(json => dispatch(createLinkSuccess(url, json)));
+    }).then(response => response.json())
+      .then(json => dispatch(createLinkSuccess(url, json)))
+      .catch(ex => {
+        dispatch(createLinkFail(url))
+        throw ex;
+      });
   }
 }
