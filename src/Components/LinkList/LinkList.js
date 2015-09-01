@@ -1,10 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import Link from 'Components/Link/Link'
-import TimeoutTransitionGroup from 'react-components/timeout-transition-group'
+import Link from 'Components/Link/Link';
+import TimeoutTransitionGroup from 'react-components/timeout-transition-group';
 
-import './style.scss'
+import './style.scss';
 
 export default class LinkList extends Component {
+  handleDeleteAllLinks(e) {
+    e.preventDefault();
+    this.props.deleteAllLinks();
+  }
   render() {
     const { links } = this.props;
     return (
@@ -33,13 +37,9 @@ export default class LinkList extends Component {
     );
   }
 
-  handleDeleteAllLinks (e) {
-    e.preventDefault();
-    this.props.deleteAllLinks();
-  }
 }
 
 LinkList.propTypes = {
   links: PropTypes.array.isRequired,
-  deleteAllLinks: PropTypes.func.isRequired
-}
+  deleteAllLinks: PropTypes.func.isRequired,
+};

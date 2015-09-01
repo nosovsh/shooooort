@@ -1,13 +1,12 @@
 import fetch from 'isomorphic-fetch';
 import * as types from 'Flux/constants/ActionTypes';
-import { SHORTENING_URL, LINK_INFO_URL } from 'Flux/constants/Urls';
-
+import { LINK_INFO_URL } from 'Flux/constants/Urls';
 
 function linkInfoRequest(shortcode) {
   return {
     type: types.LINK_INFO_REQUEST,
-    shortcode
-  }
+    shortcode,
+  };
 }
 
 function linkInfoSuccess(shortcode, json) {
@@ -16,20 +15,14 @@ function linkInfoSuccess(shortcode, json) {
     shortcode: shortcode,
     lastSeenDate: json.lastSeenDate,
     redirectCount: json.redirectCount,
-    startDate: json.startDate
-  }
+    startDate: json.startDate,
+  };
 }
 
 function linkInfoFail(shortcode) {
   return {
     type: types.LINK_INFO_FAIL,
-    shortcode: shortcode
-  }
-}
-
-export function linkInfo(shortcode) {
-  return (dispatch, getState) => {
-    return dispatch(actuallyLinkInfo(shortcode));
+    shortcode,
   };
 }
 
@@ -40,17 +33,23 @@ export function linkInfo(shortcode) {
 function actuallyLinkInfo(shortcode) {
   return dispatch => {
     dispatch(linkInfoRequest(shortcode));
-    return fetch(LINK_INFO_URL.replace(":shortcode", shortcode), {
+    return fetch(LINK_INFO_URL.replace(':shortcode', shortcode), {
       method: 'get',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     }).then(req => req.json())
       .then(json => dispatch(linkInfoSuccess(shortcode, json)))
       .catch(ex => {
-        dispatch(linkInfoFail(url))
+        dispatch(linkInfoFail(url));
         throw ex;
       });
-  }
+  };
+}
+
+export function linkInfo(shortcode) {
+  return (dispatch, getState) => {  // eslint-disable-line no-unused-vars
+    return dispatch(actuallyLinkInfo(shortcode));
+  };
 }

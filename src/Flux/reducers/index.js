@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import links from './links';
 
 const rootReducer = combineReducers({
-  links
+  links,
 });
 
 export default rootReducer;

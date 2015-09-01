@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as LinkActions from 'Flux/actions/links';
 import * as LinkInfoActions from 'Flux/actions/linkInfo';
-import TimeoutTransitionGroup from 'react-components/timeout-transition-group'
+import TimeoutTransitionGroup from 'react-components/timeout-transition-group';
 
-import CreateLinkForm from "Components/CreateLinkForm/CreateLinkForm"
-import LinkList from "Components/LinkList/LinkList"
+import CreateLinkForm from 'Components/CreateLinkForm/CreateLinkForm';
+import LinkList from 'Components/LinkList/LinkList';
 
 import 'normalize.css/normalize.css';
-import './style.scss'
+import './style.scss';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.links.filter(link => link.shortcode).map(link => {
+      this.props.dispatch(LinkInfoActions.linkInfo(link.shortcode));
+    });
+  }
   render() {
     const { links, dispatch } = this.props;
     const actions = bindActionCreators(LinkActions, dispatch);
@@ -37,16 +42,16 @@ class App extends Component {
       </div>
     );
   }
-  componentDidMount() {
-    this.props.links.filter(link => link.shortcode).map(link => {
-      this.props.dispatch(LinkInfoActions.linkInfo(link.shortcode))
-    })
-  }
 }
+
+App.propTypes = {
+  links: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 
 function select(state) {
   return {
-    links: state.links
+    links: state.links,
   };
 }
 

@@ -1,16 +1,33 @@
 import React, { Component, PropTypes } from 'react';
 
-import './style.scss'
+import './style.scss';
 
 export default class CreateLinkForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: ""
+      url: '',
     };
   }
 
-  render ()  {
+  handleChange(e) {
+    this.setState({url: e.target.value});
+  }
+
+  handleKeyPress(e) {
+    if (e.charCode === 13) {
+      this.handleCreateLink(e);
+    }
+  }
+
+  handleCreateLink() {
+    this.props.createLink(this.state.url);
+    this.setState({
+      url: '',
+    });
+  }
+
+  render()  {
     return (
       <div className="CreateLinkForm">
         <div className="Column-8">
@@ -32,24 +49,8 @@ export default class CreateLinkForm extends Component {
       </div>
     );
   }
-
-  handleChange (e) {
-    this.setState({url: e.target.value});
-  }
-
-  handleKeyPress (e) {
-    if (e.charCode == 13)
-      this.handleCreateLink(e)
-  }
-
-  handleCreateLink (e) {
-    this.props.createLink(this.state.url)
-    this.setState({
-      url: ""
-    })
-  }
 }
 
 CreateLinkForm.propTypes = {
-  createLink: PropTypes.func.isRequired
-}
+  createLink: PropTypes.func.isRequired,
+};

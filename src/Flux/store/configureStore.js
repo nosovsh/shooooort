@@ -1,7 +1,7 @@
-import { compose, createStore, applyMiddleware, combineReducers } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from 'Flux/reducers';
-import { default as localStoragePersistState } from 'redux-localstorage' // names clash with redux-devtools
+import { default as localStoragePersistState } from 'redux-localstorage'; // names clash with redux-devtools
 
 /**
  * Logs all actions and states after they are dispatched.
@@ -9,7 +9,7 @@ import { default as localStoragePersistState } from 'redux-localstorage' // name
 const logger = store => next => action => {
   console.group(action.type);
   console.info('dispatching', action);
-  let result = next(action);
+  const result = next(action);
   console.log('next state', store.getState());
   console.groupEnd(action.type);
   return result;
@@ -17,9 +17,9 @@ const logger = store => next => action => {
 
 export default function(initialState) {
   let finalCreateStore;
-  let middlewares = [
+  const middlewares = [
     thunkMiddleware,
-    logger
+    logger,
   ];
   if ( __DEVTOOLS__ ) {
     const { devTools, persistState } = require('redux-devtools');
