@@ -3,6 +3,8 @@
 @import 'CommonStyles/grid.scss';
 @import 'CommonStyles/animation.scss';
 @import 'CommonStyles/breakpoints.scss';
+@import 'CommonStyles/animation.scss';
+@import 'CommonStyles/mixins.scss';
 
 
 *, *:after, *:before {
@@ -74,4 +76,31 @@ body {
 }
 
 .LinkList-leave.LinkList-leave-active {
+}
+
+.Ribbon {
+  background-color: $accent-color;
+  overflow: hidden;
+  white-space: nowrap;
+  /* top right corner */
+  position: absolute;
+  right: -50px;
+  top: 40px;
+  @include transform(rotate(45deg));
+  @include box-shadow(0 0 10px #888);
+
+  @include breakpoint($mobile) {
+      display: none;
+  }
+}
+
+.Ribbon a {
+  border: 1px solid #faa;
+  color: #fff;
+  display: block;
+  font-family: Roboto-Light;
+  margin: 1px 0;
+  padding: 10px 50px;
+  text-align: center;
+  text-decoration: none;
 }

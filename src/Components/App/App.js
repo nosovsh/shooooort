@@ -39,6 +39,11 @@ class App extends Component {
             transitionName="LinkList">
             { links.length ? <LinkList links={links} deleteAllLinks={ actions.deleteAllLinks } /> : null }
         </TimeoutTransitionGroup>
+        <div className="Ribbon">
+          <a href="https://github.com/trashgenerator/shooooort/">
+            Fork me on GitHub
+          </a>
+        </div>
       </div>
     );
   }
