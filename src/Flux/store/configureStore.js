@@ -2,18 +2,11 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from 'Flux/reducers';
 import { default as localStoragePersistState } from 'redux-localstorage'; // names clash with redux-devtools
+import createLogger from 'redux-logger';
 
-/**
- * Logs all actions and states after they are dispatched.
- */
-const logger = store => next => action => {
-  console.group(action.type);
-  console.info('dispatching', action);
-  const result = next(action);
-  console.log('next state', store.getState());
-  console.groupEnd(action.type);
-  return result;
-};
+const logger = createLogger({
+  predicate: (getState, action) => __DEBUG__, // eslint-disable-line no-unused-vars
+});
 
 export default function(initialState) {
   let finalCreateStore;

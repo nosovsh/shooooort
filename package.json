@@ -46,6 +46,7 @@
     "react-zeroclipboard": "^1.1.0",
     "redux": "^1.0.1",
     "redux-localstorage": "^0.4.0",
+    "redux-logger": "^1.0.6",
     "redux-thunk": "^0.1.0",
     "sass-loader": "^2.0.1",
     "style-loader": "^0.12.3",
