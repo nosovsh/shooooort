@@ -4,7 +4,8 @@ var webpack = require('webpack');
 var baseDir = path.join(__dirname, '..');
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-source-map',
+  context: path.resolve(__dirname, '..'),
   entry: [
     './src/Components/index.js',
   ],
