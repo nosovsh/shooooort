@@ -19,9 +19,11 @@
   border: 0px;
   outline: none;
   width: 460px;
-  max-width: 100%;
-  @include border-radius(3px);
   float: left;
+  @include border-radius(3px);
+  @include breakpoint($mobile) {
+    width: 100%;
+  }
 }
 
 .CreateLinkForm__Button {
