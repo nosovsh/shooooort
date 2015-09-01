@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node server.js",
-    "lint": "eslint src"
+    "start": "node ./webpack/server.js",
+    "dev": "node ./webpack/server.dev.js",
+    "lint": "eslint src",
+    "postinstall": "webpack -p --config ./webpack/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +37,7 @@
     "moment": "^2.10.6",
     "node-sass": "^3.2.0",
     "normalize.css": "^3.0.3",
+    "pushstate-server": "^1.6.0",
     "react": "^0.13.0",
     "react-components": "^0.2.0",
     "react-redux": "^0.8.2",
