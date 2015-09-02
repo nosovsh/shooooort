@@ -42,7 +42,7 @@ function actuallyLinkInfo(shortcode) {
     }).then(req => req.json())
       .then(json => dispatch(linkInfoSuccess(shortcode, json)))
       .catch(ex => {
-        dispatch(linkInfoFail(url));
+        dispatch(linkInfoFail(shortcode));
         throw ex;
       });
   };
