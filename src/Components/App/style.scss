@@ -82,14 +82,14 @@ body {
   background-color: $accent-color;
   overflow: hidden;
   white-space: nowrap;
-  /* top right corner */
+  /* top left corner */
   position: absolute;
-  right: -50px;
+  left: -50px;
   top: 40px;
-  @include transform(rotate(45deg));
+  @include transform(rotate(-45deg));
   @include box-shadow(0 0 10px #888);
 
-  @include breakpoint($mobile) {
+  @include breakpoint($no-github-ribbon) {
       display: none;
   }
 }
